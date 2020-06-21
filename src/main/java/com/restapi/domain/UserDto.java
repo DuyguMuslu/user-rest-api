@@ -5,6 +5,7 @@ import lombok.Setter;
 
 import javax.validation.constraints.NotNull;
 import java.util.Date;
+import java.util.List;
 
 @Getter
 @Setter
@@ -16,4 +17,5 @@ public class UserDto {
     String lastName ;
     Date dateOfBirth;
     String currentAddress;
+    List<PetDto> petList;
 }

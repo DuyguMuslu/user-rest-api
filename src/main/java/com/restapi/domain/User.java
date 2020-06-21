@@ -5,6 +5,7 @@ import lombok.Data;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
+import java.util.List;
 
 @Data
 @Entity
@@ -23,6 +24,8 @@ public class User {
     Date dateOfBirth;
     String currentAddress;
 
+    @OneToMany(targetEntity=Pet.class,cascade= CascadeType.ALL, fetch = FetchType.LAZY)
+    List<Pet> petList;
 
 
 
