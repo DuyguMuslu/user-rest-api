@@ -46,17 +46,17 @@ public class AssignController {
     public ResponseEntity<ResponseDto<?>> createPet(@PathVariable (value = "id") Long userId,
                                  @Valid @RequestBody PetDto petDto) {
         ResponseDto<?> response = ResponseDto.builder()
-                .status(HttpStatus.OK.toString())
+                .status(HttpStatus.CREATED.toString())
                 .body(assignService.createPetWithUser(userId,petDto)).build();
-        return ResponseEntity.status(HttpStatus.OK).body(response);
+        return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
     @PostMapping(path ={"/users/{id}/pets/{petId}"})
     public ResponseEntity<ResponseDto<?>> setUserToPet(@PathVariable (value = "id") Long userId,
                                                     @PathVariable (value = "petId") Long petId) {
         ResponseDto<?> response = ResponseDto.builder()
-                .status(HttpStatus.OK.toString())
+                .status(HttpStatus.ACCEPTED.toString())
                 .body(assignService.updateUserOfPet(userId,petId)).build();
-        return ResponseEntity.status(HttpStatus.OK).body(response);
+        return ResponseEntity.status(HttpStatus.ACCEPTED).body(response);
     }
 }
