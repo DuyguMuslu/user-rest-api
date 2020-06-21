@@ -43,7 +43,7 @@ public class AssignController {
     }
 
     @PostMapping(path ={"/users/{id}/pets"})
-    public ResponseEntity<ResponseDto<?>> createPet(@PathVariable (value = "id") Long userId,
+    public ResponseEntity<ResponseDto<?>> createPetForUser(@PathVariable (value = "id") Long userId,
                                  @Valid @RequestBody PetDto petDto) {
         ResponseDto<?> response = ResponseDto.builder()
                 .status(HttpStatus.CREATED.toString())
