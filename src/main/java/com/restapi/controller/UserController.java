@@ -11,6 +11,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+/**
+ * Controller for the Rest Service requests related to user definition
+ *
+ * @author Duygu Muslu
+ * @since  2020-06-17
+ * @version 1.0
+ */
 
 @Controller
 @RequestMapping
@@ -51,8 +58,8 @@ public class UserController {
     @PutMapping(path ={"/users/{id}/address/{address}"})
     public ResponseEntity<Object> updateUserAddress(@PathVariable long id,@PathVariable String address) {
            ResponseDto<?> response = ResponseDto.builder()
-                .status(HttpStatus.OK.toString())
+                .status(HttpStatus.ACCEPTED.toString())
                 .body(userService.updateUserAddress(address,id)).build();
-        return ResponseEntity.status(HttpStatus.OK).body(response);
+        return ResponseEntity.status(HttpStatus.ACCEPTED).body(response);
     }
 }

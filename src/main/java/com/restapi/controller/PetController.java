@@ -12,6 +12,14 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
+/**
+ * Controller for the Rest Service requests related to pet definition
+ *
+ * @author Duygu Muslu
+ * @since  2020-06-17
+ * @version 1.0
+ */
+
 @Controller
 @RequestMapping
 @Slf4j
@@ -28,7 +36,7 @@ public class PetController {
     public ResponseEntity<Object> createPet(@Valid @RequestBody PetDto petDto){
         ResponseDto<?> response = ResponseDto.builder()
                 .status(HttpStatus.CREATED.toString())
-                .body(petService.createPet(petDto).toString()).build();
+                .body(petService.createPet(petDto)).build();
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
@@ -51,8 +59,8 @@ public class PetController {
     @PutMapping(path ={"/pets/{id}/name/{name}/age/{age}"})
     public ResponseEntity<Object> updatePet(@PathVariable long id,@PathVariable String name,@PathVariable Integer age) {
            ResponseDto<?> response = ResponseDto.builder()
-                .status(HttpStatus.OK.toString())
+                .status(HttpStatus.ACCEPTED.toString())
                 .body(petService.updatePet(name,age,id)).build();
-        return ResponseEntity.status(HttpStatus.OK).body(response);
+        return ResponseEntity.status(HttpStatus.ACCEPTED).body(response);
     }
 }

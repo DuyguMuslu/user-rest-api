@@ -25,8 +25,7 @@ public class UserService {
     }
 
     public UserDto createUser(UserDto userDto) {
-        User savedUser = userRepository.save(convertToEntity(userDto));
-        return convertToDto(savedUser);
+        return convertToDto(userRepository.save(convertToEntity(userDto)));
     }
 
     public List<UserDto> retrieveAllUsers(){

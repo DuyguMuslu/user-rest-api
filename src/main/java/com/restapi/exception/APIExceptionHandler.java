@@ -52,12 +52,6 @@ public class APIExceptionHandler extends ResponseEntityExceptionHandler {
         return ResponseEntity.badRequest().body(responseDTO);
     }
 
-    @ExceptionHandler(Throwable.class)
-    public void handle(HttpMessageNotReadableException e) {
-        System.out.println("EXCEPTION HAPPENED");
-        System.out.println(e);
-    }
-
     @ExceptionHandler(InvocationTargetException.class)
     public final ResponseEntity<Object> handleInvocationTargetException(Exception ex, WebRequest request) {
         log.error(ex.getMessage(), ex);
@@ -75,6 +69,16 @@ public class APIExceptionHandler extends ResponseEntityExceptionHandler {
         ResponseDto responseDTO = ResponseDto.builder()
                 .status(HttpStatus.BAD_REQUEST.toString())
                 .message("Data Integrity is violated, please make sure constraints are unique").build();
+
+        return ResponseEntity.badRequest().body(responseDTO);
+    }
+
+    @Override
+    public ResponseEntity<Object> handleHttpMessageNotReadable(HttpMessageNotReadableException ex, HttpHeaders headers, HttpStatus status, WebRequest request){
+        log.error(ex.getMessage(), ex);
+        ResponseDto responseDTO = ResponseDto.builder()
+                .status(HttpStatus.BAD_REQUEST.toString())
+                .message("JSON is not valid").build();
 
         return ResponseEntity.badRequest().body(responseDTO);
     }
