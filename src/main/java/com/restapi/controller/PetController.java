@@ -59,8 +59,8 @@ public class PetController {
     @PutMapping(path ={"/pets/{id}/name/{name}/age/{age}"})
     public ResponseEntity<Object> updatePet(@PathVariable long id,@PathVariable String name,@PathVariable Integer age) {
            ResponseDto<?> response = ResponseDto.builder()
-                .status(HttpStatus.ACCEPTED.toString())
+                .status(HttpStatus.OK.toString())
                 .body(petService.updatePet(name,age,id)).build();
-        return ResponseEntity.status(HttpStatus.ACCEPTED).body(response);
+        return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 }

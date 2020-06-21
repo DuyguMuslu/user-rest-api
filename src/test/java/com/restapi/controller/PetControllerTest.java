@@ -107,9 +107,8 @@ class PetControllerTest {
         petDto.setAge(3);
         petDto.setPetID(1L);
         given(petService.updatePet(petDto.getName(),petDto.getAge(),1L)).willReturn(petDto);
-        String petJson = "{\"petID\": 1, \"name\": \"Joei\",\"age\": 7 }";
-        MockHttpServletResponse response = mockMvc.perform(put("/pets/1/name/Joei/age/7").contentType(MediaType.APPLICATION_JSON)
-                .content(petJson)).andReturn().getResponse();
-        assertThat(response.getStatus()).isEqualTo(HttpStatus.ACCEPTED.value());
+         MockHttpServletResponse response = mockMvc.perform(put("/pets/1/name/Joei/age/7").contentType(MediaType.APPLICATION_JSON))
+                 .andReturn().getResponse();
+        assertThat(response.getStatus()).isEqualTo(HttpStatus.OK.value());
     }
 }

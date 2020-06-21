@@ -58,8 +58,8 @@ public class UserController {
     @PutMapping(path ={"/users/{id}/address/{address}"})
     public ResponseEntity<Object> updateUserAddress(@PathVariable long id,@PathVariable String address) {
            ResponseDto<?> response = ResponseDto.builder()
-                .status(HttpStatus.ACCEPTED.toString())
+                .status(HttpStatus.OK.toString())
                 .body(userService.updateUserAddress(address,id)).build();
-        return ResponseEntity.status(HttpStatus.ACCEPTED).body(response);
+        return ResponseEntity.status(HttpStatus.OK).body(response);
     }
 }

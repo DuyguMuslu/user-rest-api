@@ -118,9 +118,8 @@ class UserControllerTest {
         dto.setUserID(1L);
         dto.setCurrentAddress("Rotterdam");
         given(userService.updateUserAddress(dto.getCurrentAddress(),1L)).willReturn(dto);
-        String userJson = "{\"userID\" : 1 ,\"firstName\" \"Duygu\",\"lastName\": \"Muslu\",\"dateOfBirth\" : \"1982-05-29\", \"currentAddress\": \"Amsterdam\"}";
-        MockHttpServletResponse response = mockMvc.perform(put("/users/1/address/Rotterdam").contentType(MediaType.APPLICATION_JSON)
-                .content(userJson)).andReturn().getResponse();
-        assertThat(response.getStatus()).isEqualTo(HttpStatus.ACCEPTED.value());
+        MockHttpServletResponse response = mockMvc.perform(put("/users/1/address/Rotterdam").contentType(MediaType.APPLICATION_JSON))
+                .andReturn().getResponse();
+        assertThat(response.getStatus()).isEqualTo(HttpStatus.OK.value());
     }
 }
